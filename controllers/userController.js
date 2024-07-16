@@ -1,0 +1,14 @@
+import User from "../models/userModel.js"
+
+export const createUser = async (res, req) => {
+    try {
+        const user = new User(req.body);
+        await user.save(); 
+        res.status(201).json({
+            status: "success",
+            message: "User created successfully",
+    });
+    } catch (error) {
+        res.status(404).send(error);
+    }
+}
